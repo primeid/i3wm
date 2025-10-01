@@ -19,6 +19,10 @@ exec_always --no-startup-id xfce4-clipman
 
 # REMOVED: Shutter (Perl, 50-80MB) - Using maim for screenshots instead (C, 1-2MB)
 # REMOVED: exec_always shutter --min_at_startup
+
+# Screen Mirroring - Mirror laptop screen (eDP-1) to HDMI
+exec_always --no-startup-id xrandr --output HDMI-1 --auto --same-as eDP-1 || true
+
 # Multi-monitor xrandr setup - comment out for single monitor or adjust per your setup
 # exec_always xrandr --dpi 144 --output eDP-1 --mode 1920x1080 --pos 0x1267 --rotate normal --output DP-1 --primary --mode 3840x2160 --pos 1920x0 --rotate normal --output HDMI-1 --off --output DP-2 --off --output HDMI-2 --off
 exec --no-startup-id nm-applet
