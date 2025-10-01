@@ -31,8 +31,8 @@ exec --no-startup-id nm-applet
 exec_always xset r rate 200 42
 exec_always setxkbmap -option ctrl:nocaps
 
-# Start Bluetooth tray
-exec_always blueman-applet
+# Bluetooth disabled - uncomment if needed:
+# exec_always blueman-applet
 
 # Compositor - OPTIMIZED with minimal settings for best performance
 exec_always --no-startup-id picom -b --backend glx --vsync --no-fading-openclose --no-fading-destroyed-argb
