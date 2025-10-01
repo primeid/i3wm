@@ -23,6 +23,9 @@ exec_always --no-startup-id xfce4-clipman
 # Screen Mirroring - Mirror laptop screen (eDP-1) to HDMI
 exec_always --no-startup-id xrandr --output HDMI-1 --auto --same-as eDP-1 || true
 
+# Auto-switch audio to HDMI when connected, laptop speakers when disconnected
+exec_always --no-startup-id sleep 2 && ~/.config/i3/audio-switcher.sh
+
 # Multi-monitor xrandr setup - comment out for single monitor or adjust per your setup
 # exec_always xrandr --dpi 144 --output eDP-1 --mode 1920x1080 --pos 0x1267 --rotate normal --output DP-1 --primary --mode 3840x2160 --pos 1920x0 --rotate normal --output HDMI-1 --off --output DP-2 --off --output HDMI-2 --off
 exec --no-startup-id nm-applet
@@ -108,6 +111,9 @@ bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ to
 # Brightness Controls
 bindsym XF86MonBrightnessUp exec xbacklight -inc 10
 bindsym XF86MonBrightnessDown exec xbacklight -dec 10
+
+# Manual Audio Output Switch (HDMI/Laptop)
+bindsym $mod+Shift+a exec --no-startup-id ~/.config/i3/audio-switcher.sh && notify-send -t 2000 'Audio Output' 'Switched audio based on HDMI status'
 
 # Workspace Navigation
 bindsym $mod+Left focus left
