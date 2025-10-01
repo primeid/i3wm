@@ -7,14 +7,15 @@ set $mod Mod4
 set $alt Mod1
 set $menu Mod3
 
-# Autostart Programs
-exec_always copyq
+# Autostart Programs - OPTIMIZED
+# Replaced CopyQ (Qt, 30-50MB) with clipman (GTK, 2-5MB)
+exec_always --no-startup-id xfce4-clipman
 # i3altlayout and i3wsr not installed (NixOS specific)
 # exec_always --no-startup-id i3altlayout
 # exec_always --no-startup-id i3wsr
 
-# open shutter hidden
-exec_always shutter --min_at_startup
+# REMOVED: Shutter (Perl, 50-80MB) - Using maim for screenshots instead (C, 1-2MB)
+# REMOVED: exec_always shutter --min_at_startup
 # Multi-monitor xrandr setup - comment out for single monitor or adjust per your setup
 # exec_always xrandr --dpi 144 --output eDP-1 --mode 1920x1080 --pos 0x1267 --rotate normal --output DP-1 --primary --mode 3840x2160 --pos 1920x0 --rotate normal --output HDMI-1 --off --output DP-2 --off --output HDMI-2 --off
 exec --no-startup-id nm-applet
@@ -26,8 +27,11 @@ exec_always setxkbmap -option ctrl:nocaps
 # Start Bluetooth tray
 exec_always blueman-applet
 
-# Start compositor for transparency and effects
-exec_always --no-startup-id picom -b
+# Compositor - OPTIMIZED with minimal settings for best performance
+exec_always --no-startup-id picom -b --backend glx --vsync --no-fading-openclose --no-fading-destroyed-argb
+
+# Hide cursor when typing (minimal C utility)
+exec_always xbanish
 
 # Window Settings
 smart_borders on
@@ -41,7 +45,7 @@ exec_always xsetroot -solid "#3a3a3a"
 
 # Floating Windows
 for_window [class="Yad"] floating enable
-for_window [class="copyq"] floating enable
+for_window [class="Xfce4-clipman-settings"] floating enable
 for_window [class="pavucontrol"] floating enable
 for_window [class="lxappearance"] floating enable
 
@@ -56,11 +60,22 @@ bindsym $mod+l exec --no-startup-id "i3lock && sleep 1 && xset s activate"
 bindsym $mod+Shift+l exec "i3-msg exit"
 bindsym $mod+Shift+End exec "systemctl poweroff"
 bindsym $mod+Shift+b exec "systemctl reboot"
-bindsym $mod+Shift+p exec "shutter -s -e -n -C -o './%y-%m-%d_$w_$h.png'"
+
+# Screenshot with maim (Ultra-lightweight C tool, 1-2MB RAM vs Shutter's 50-80MB)
+# Select area and save to clipboard + file
+bindsym $mod+Shift+p exec --no-startup-id maim -s | tee ~/Pictures/$(date +%Y-%m-%d_%H-%M-%S).png | xclip -selection clipboard -t image/png
+# Full screen screenshot
+bindsym Print exec --no-startup-id maim ~/Pictures/$(date +%Y-%m-%d_%H-%M-%S).png
+# Active window screenshot
+bindsym $mod+Print exec --no-startup-id maim -i $(xdotool getactivewindow) ~/Pictures/$(date +%Y-%m-%d_%H-%M-%S).png
+
 bindsym $mod+Tab workspace back_and_forth
 bindsym $mod+Page_Down workspace next
 bindsym $mod+Page_Up workspace prev
-bindsym $mod+v exec "copyq toggle"
+
+# Clipboard manager toggle (clipman - lightweight GTK alternative to CopyQ)
+bindsym $mod+v exec --no-startup-id xfce4-clipman-history
+
 bindsym $mod+space exec --no-startup-id rofi -show drun
 bindsym $mod+c exec code
 
@@ -95,9 +110,9 @@ bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
 
-# Gap Settings
-gaps inner 10
-gaps outer 10
+# Gap Settings - OPTIMIZED (reduced from 10 to 5 for less overhead)
+gaps inner 5
+gaps outer 5
 bindsym $mod+minus gaps inner current minus 5
 bindsym $mod+plus gaps inner current plus 5
 
