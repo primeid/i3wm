@@ -83,7 +83,7 @@ bindsym $mod+Page_Up workspace prev
 bindsym $mod+v exec --no-startup-id xfce4-clipman-history
 
 bindsym $mod+space exec --no-startup-id rofi -show drun
-bindsym $mod+c exec code
+# bindsym $mod+c exec code  # VS Code not installed - uncomment after: sudo snap install code --classic
 
 # Open walking videos in fullscreen
 # Assign Firefox to workspace 1, which is on DP-1
@@ -192,6 +192,32 @@ mode "resize" {
 }
 
 bindsym $mod+r mode "resize"
+
+# Layout Management
+bindsym $mod+Ctrl+s layout stacking
+bindsym $mod+Ctrl+t layout tabbed
+bindsym $mod+Ctrl+e layout toggle split
+
+# Split Orientation
+bindsym $mod+h split h
+bindsym $mod+Ctrl+v split v
+
+# Container Focus
+bindsym $mod+a focus parent
+bindsym $mod+d focus child
+
+# Scratchpad
+bindsym $mod+Shift+BackSpace move scratchpad
+bindsym $mod+BackSpace scratchpad show
+
+# Border Toggle
+bindsym $mod+u border none
+bindsym $mod+n border normal
+bindsym $mod+o border pixel 1
+
+# Move Workspace Between Monitors
+bindsym $mod+Ctrl+Shift+Left move workspace to output left
+bindsym $mod+Ctrl+Shift+Right move workspace to output right
 
 # i3bar Configuration
 bar {

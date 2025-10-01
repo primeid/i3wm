@@ -27,8 +27,8 @@ When in resize mode (`Mod+R`):
 | `Mod+E` | File manager (Nautilus) |
 | `Mod+W` | Firefox - New window |
 | `Mod+Shift+W` | Firefox - Private window |
-| `Mod+V` | Clipboard manager (CopyQ) |
-| `Mod+C` | VS Code |
+| `Mod+V` | Clipboard manager (xfce4-clipman) |
+| `Mod+C` | VS Code (disabled - not installed) |
 | `Mod+M` | htop (system monitor) in workspace 9 |
 
 ## Workspaces
@@ -66,9 +66,9 @@ When in resize mode (`Mod+R`):
 | `XF86AudioPlay` | Play/Pause |
 | `XF86AudioNext` | Next track |
 | `XF86AudioPrev` | Previous track |
-| `XF86AudioRaiseVolume` | Volume up |
-| `XF86AudioLowerVolume` | Volume down |
-| `XF86AudioMute` | Toggle mute |
+| `XF86AudioRaiseVolume` | Volume up (with notification) |
+| `XF86AudioLowerVolume` | Volume down (with notification) |
+| `XF86AudioMute` | Toggle mute (with notification) |
 
 ## Brightness
 
@@ -81,7 +81,48 @@ When in resize mode (`Mod+R`):
 
 | Keybinding | Action |
 |------------|--------|
-| `Mod+Shift+P` | Screenshot with Shutter |
+| `Mod+Shift+P` | Screenshot selection (maim - to clipboard & file) |
+| `Print` | Full screen screenshot |
+| `Mod+Print` | Active window screenshot |
+
+## Layout Management
+
+| Keybinding | Action |
+|------------|--------|
+| `Mod+Ctrl+S` | Stacking layout |
+| `Mod+Ctrl+T` | Tabbed layout |
+| `Mod+Ctrl+E` | Toggle split layout |
+| `Mod+H` | Split horizontal |
+| `Mod+Ctrl+V` | Split vertical |
+
+## Container Focus
+
+| Keybinding | Action |
+|------------|--------|
+| `Mod+A` | Focus parent container |
+| `Mod+D` | Focus child container |
+
+## Scratchpad
+
+| Keybinding | Action |
+|------------|--------|
+| `Mod+Shift+BackSpace` | Move window to scratchpad |
+| `Mod+BackSpace` | Show/hide scratchpad |
+
+## Border Controls
+
+| Keybinding | Action |
+|------------|--------|
+| `Mod+U` | Remove window borders |
+| `Mod+N` | Normal borders with title |
+| `Mod+O` | 1-pixel borders |
+
+## Multi-Monitor
+
+| Keybinding | Action |
+|------------|--------|
+| `Mod+Ctrl+Shift+Left` | Move workspace to left monitor |
+| `Mod+Ctrl+Shift+Right` | Move workspace to right monitor |
 
 ## Special
 
@@ -100,9 +141,20 @@ If you have multiple monitors:
 ### Floating Windows
 These windows float by default:
 - Yad dialogs
-- CopyQ clipboard manager
+- xfce4-clipman clipboard manager settings
 - pavucontrol audio control
 - lxappearance theme manager
+
+### Layout Modes Explained
+- **Stacking** (`Mod+Ctrl+S`): Windows stack vertically with tabs
+- **Tabbed** (`Mod+Ctrl+T`): Windows appear as tabs (like browser tabs)
+- **Split** (`Mod+Ctrl+E`): Default tiling mode, side-by-side
+
+### Scratchpad
+The scratchpad is a hidden workspace for temporary windows:
+- Store any window with `Mod+Shift+BackSpace`
+- Retrieve it with `Mod+BackSpace`
+- Perfect for calculator, notes, or music player
 
 ### Quick Reference Card
 
@@ -110,4 +162,4 @@ Print this page or keep it handy while learning i3!
 
 ---
 
-**Pro Tip**: Most keybindings follow a logical pattern. `Mod+Key` performs an action, while `Mod+Shift+Key` performs a related but more "destructive" or permanent action.
+**Pro Tip**: Most keybindings follow a logical pattern. `Mod+Key` performs an action, while `Mod+Shift+Key` performs a related but more "destructive" or permanent action. `Mod+Ctrl+Key` is used for layout and advanced controls.

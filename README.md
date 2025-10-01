@@ -31,8 +31,8 @@ cd ~/Projects/i3wm
 ```bash
 sudo apt update
 sudo apt install -y i3 i3lock i3status rofi picom alacritty pavucontrol \
-  playerctl copyq blueman xbanish shutter arandr feh xbacklight \
-  nautilus fonts-firacode fonts-font-awesome
+  playerctl xfce4-clipman blueman xbanish arandr feh xbacklight \
+  nautilus fonts-firacode fonts-font-awesome maim xdotool xclip dunst
 ```
 
 #### 2. Create Config Directories
@@ -96,12 +96,14 @@ See [KEYBINDINGS.md](KEYBINDINGS.md) for the complete list.
 ### Utilities
 - **alacritty** - GPU-accelerated terminal
 - **picom** - Compositor (transparency & effects)
-- **copyq** - Clipboard manager
-- **shutter** - Screenshot tool
+- **xfce4-clipman** - Lightweight clipboard manager
+- **maim** - Screenshot tool (with xclip for clipboard)
+- **dunst** - Notification daemon
 - **arandr** - Display configuration
 - **feh** - Image viewer & wallpaper setter
 - **pavucontrol** - Audio control
 - **blueman** - Bluetooth manager
+- **xbanish** - Hide cursor when typing
 
 ## Color Scheme
 
@@ -154,13 +156,14 @@ After making changes, reload i3: `Mod+Shift+C`
 
 These applications start automatically with i3:
 
-- copyq (clipboard manager)
-- shutter (screenshot tool)
+- startup.sh (stops COSMIC services to save RAM/battery)
+- xfce4-clipman (clipboard manager)
 - nm-applet (network manager)
 - blueman-applet (Bluetooth)
-- picom (compositor)
+- picom (compositor with optimized settings)
 - xbanish (cursor hider)
-- Custom keyboard settings
+- dunst (notification daemon)
+- Custom keyboard settings (caps lock as ctrl, faster key repeat)
 
 Edit the `exec` and `exec_always` lines in `i3/config` to modify.
 
