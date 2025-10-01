@@ -8,6 +8,9 @@ set $alt Mod1
 set $menu Mod3
 
 # Autostart Programs - OPTIMIZED
+# Stop COSMIC services to save RAM and battery in i3
+exec_always --no-startup-id ~/.config/i3/startup.sh
+
 # Replaced CopyQ (Qt, 30-50MB) with clipman (GTK, 2-5MB)
 exec_always --no-startup-id xfce4-clipman
 # i3altlayout and i3wsr not installed (NixOS specific)
